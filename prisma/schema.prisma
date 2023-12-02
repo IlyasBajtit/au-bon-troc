@@ -19,3 +19,13 @@ model Products {
   authorUUID  String @db.VarChar(36) // Ref to UUIDv4
   Author      Users  @relation(map: "product_author", fields: [authorUUID], references: [UUID])
 }
+
+
+
+
+model Users {
+  UUID     String     @id(map: "users_uuid") @unique() @default(uuid()) @db.VarChar(36) //UUIDv4
+  Pseudo   String     @unique() @db.VarChar(50)
+  Mail     String     @unique() @db.VarChar(75)
+  Products Products[]
+}
